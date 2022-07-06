@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProjetoPonto.Views.Login"
+             xmlns:viewModel="clr-namespace:ProjetoPonto.ViewModels"
+             xmlns:custom="clr-namespace:ProjetoPonto.Components.Renderers"
+             x:Name="PaginaLogin"
+             >
+
+    <ContentPage.BindingContext>
+        <viewModel:LoginViewModel />
+    </ContentPage.BindingContext>
+    
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="Transparent">
+            <Grid ColumnDefinitions="*,*,*" 
+                  RowDefinitions="40*,30*" 
+                  >
+
+                <Image Grid.RowSpan="2" 
+                       Grid.ColumnSpan="3" 
+                       Source="Background.jpg"
+                       Aspect="AspectFill" 
+                       HorizontalOptions="FillAndExpand" 
+                       VerticalOptions="FillAndExpand" 
+                       />
+
+                <Label TextColor="Black" 
+                       FontSize="64" 
+                       FontFamily="Splash"
+                       HorizontalOptions="CenterAndExpand"
+                       Grid.ColumnSpan="3"
+                       VerticalOptions="Center"
+                       >
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Ponto"/>
+                            <Span Text="&#10;" />
+                            <Span Text="Bronz" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+
+                <BoxView BackgroundColor="White" 
+                         Color="White"
+                         Grid.Row="1"
+                         Grid.ColumnSpan="3"
+                         CornerRadius="50,50,0,0"
+                         />
+
+                <Frame VerticalOptions="Fill" 
+                       Margin="0,10,0,0" 
+                       HasShadow="False" 
+                       BackgroundColor="White" 
+                       Padding="0" 
+                       CornerRadius="50" 
+                       Grid.ColumnSpan="3" 
+                       Grid.Row="1"
+                       >
+
+                    <StackLayout VerticalOptions="FillAndExpand" 
+                                 HorizontalOptions="Center" 
+                                 Padding="0" 
+                                 Margin="0,10,0,0"
+                                 >
+                        <Grid RowDefinitions="20*,20*,20*,20*,20*">
+
+                            <Label Grid.Row="0" 
+                                   HorizontalOptions="CenterAndExpand" 
+                                   Grid.Column="1" 
+                                   Text="Login"
+                                   FontSize="36"
+                                   FontAttributes="Bold"
+                                   TextColor="Black"
+                                   />
+
+                            <Frame Grid.Row="1" 
+                                   Grid.ColumnSpan="3" 
+                                   CornerRadius="50" 
+                                   Padding="0" 
+                                   Margin="10"
+                                   >
+                                <custom:MyEntry Placeholder="Nome"
+                                                Text="{Binding Nome}"
+                                                />
+                            </Frame>
+
+                            <Frame Grid.Row="2" 
+                                   Grid.ColumnSpan="3" 
+                                   CornerRadius="50" 
+                                   Padding="0" 
+                                   Margin="10"
+                                   >
+                                <custom:MyEntry Placeholder="Senha" 
+                                                IsPassword="True"
+                                                Text="{Binding Senha}"
+                                                />
+                            </Frame>
+
+                            <Button Grid.Row="3" 
+                                    Text="Login"
+                                    BackgroundColor="Black"
+                                    TextColor="White"
+                                    Grid.ColumnSpan="3" 
+                                    CornerRadius="50" 
+                                    Padding="0" 
+                                    Margin="10"
+                                    BindingContext="{}"
+                                    Command="{Binding Path=BindingContext.ButtonLogin, Source={x:Reference PaginaLogin}}"
+                                    CommandParameter="{Binding .}"
+                                    />
+                        </Grid>
+                    </StackLayout>
+                </Frame>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
