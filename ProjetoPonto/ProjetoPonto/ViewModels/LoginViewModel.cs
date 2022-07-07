@@ -16,6 +16,8 @@ namespace ProjetoPonto.ViewModels
         {
         }
 
+        public INavigation Navigation { get; set; }
+
         private string _nome;
         private string _senha;
 
@@ -35,7 +37,9 @@ namespace ProjetoPonto.ViewModels
 
         #region -> Commands
         private Command _buttonLogin;
+        private Command _buttonCadastro;
         public Command ButtonLogin => _buttonLogin ?? (_buttonLogin = new Command( async () => await ExecutaLogin()));
+        public Command ButtonCadastro => _buttonCadastro ?? (_buttonCadastro = new Command(async () => await AbrirCadastro()));
         #endregion
 
         #region -> Métodos
@@ -48,9 +52,22 @@ namespace ProjetoPonto.ViewModels
                 if( _nome == usuario.Nome && _senha == usuario.Senha)
                     Application.Current.MainPage = new NavigationPage(new MenuInicial());
             }
-            catch(Exception e)
+            catch(Exception ex)
             {
-                throw e;
+                await App.Current.MainPage.DisplayAlert("Atenção", ex.Message, "OK");
+            }
+        }
+
+        private async Task AbrirCadastro()
+        {
+            try
+            {
+                await Navigation.PushAsync(new Cadastro(), false);
+
+            }
+            catch (Exception ex)
+            {
+                await App.Current.MainPage.DisplayAlert("Atencao", ex.Message, "OK");
             }
         }
         #endregion

@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:customEntry="clr-namespace:ProjetoPonto.Components.Renderers"
+             x:Class="ProjetoPonto.Views.Cadastro">
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="Transparent"
+                     Padding="0">
+            <Grid ColumnDefinitions="*,*,*" 
+                  RowDefinitions="20*,80*" 
+                  >
+
+                <Image Grid.RowSpan="2" 
+                       Grid.ColumnSpan="3" 
+                       Source="Background.jpg"
+                       Aspect="AspectFill" 
+                       HorizontalOptions="FillAndExpand" 
+                       VerticalOptions="FillAndExpand" 
+                       />
+
+                <BoxView Grid.ColumnSpan="3"
+                       Grid.Row="1"
+                       BackgroundColor="White"
+                       CornerRadius="50,50,0,0"
+                         />
+
+                <Frame Grid.ColumnSpan="3"
+                       Grid.Row="1"
+                       BackgroundColor="White"
+                       CornerRadius="50"
+                       >
+                    <StackLayout>
+                        <Grid ColumnDefinitions="*,*,*" RowDefinitions="10*,30*,30*,30*">
+                            <Label Text="Cadastre-se"
+                                   Grid.Column="1"
+                                   FontSize="20"
+                                   FontAttributes="Bold"
+                                   TextColor="Black"
+                               />
+                            <Frame Grid.Row="1"
+                                   CornerRadius="50"
+                                   Grid.ColumnSpan="3"
+                                   Padding="0"
+                                   Margin="10">
+                                <customEntry:MyEntry Placeholder="Nome"
+                                                 />
+                            </Frame>
+                            <Frame Grid.Row="2"
+                                   CornerRadius="50"
+                                   Grid.ColumnSpan="3"
+                                   Padding="0"
+                                   Margin="10"
+                                   >
+                                <customEntry:MyEntry Placeholder="Senha"/>
+                            </Frame>
+                            <Button Text="Cadastrar-se"
+                                    Grid.Row="3"
+                                    Grid.Column="1"
+                                    Grid.ColumnSpan="2"
+                                    BackgroundColor="Black"
+                                    TextColor="White"
+                                    CornerRadius="50"/>
+                        </Grid>
+                    </StackLayout>
+                </Frame>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

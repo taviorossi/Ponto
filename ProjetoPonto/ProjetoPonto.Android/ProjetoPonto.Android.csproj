@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Components\Renderers\EntryCusromRenderer.cs" />
+    <Compile Include="Helpers\DatabasePath.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -79,6 +80,10 @@
     <AndroidResource Include="Resources\drawable-hdpi\splashlogo.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\ProjetoPontoBase\ProjetoPontoBase\ProjetoPontoBase.csproj">
+      <Project>{7BB3E5C9-C548-4F00-A1C6-A99059991B0E}</Project>
+      <Name>ProjetoPontoBase</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ProjetoPonto\ProjetoPonto.csproj">
       <Project>{ACB4D21E-C780-448C-8163-41BC4502C399}</Project>
       <Name>ProjetoPonto</Name>

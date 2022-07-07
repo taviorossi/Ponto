@@ -5,6 +5,8 @@
              xmlns:viewModel="clr-namespace:ProjetoPonto.ViewModels"
              xmlns:custom="clr-namespace:ProjetoPonto.Components.Renderers"
              x:Name="PaginaLogin"
+             NavigationPage.HasNavigationBar="false"
+             NavigationPage.HasBackButton="False"
              >
 
     <ContentPage.BindingContext>
@@ -67,7 +69,8 @@
 
                             <Label Grid.Row="0" 
                                    HorizontalOptions="CenterAndExpand" 
-                                   Grid.Column="1" 
+                                   Grid.Column="1"
+                                   Grid.ColumnSpan="2"
                                    Text="Login"
                                    FontSize="36"
                                    FontAttributes="Bold"
@@ -75,7 +78,7 @@
                                    />
 
                             <Frame Grid.Row="1" 
-                                   Grid.ColumnSpan="3" 
+                                   Grid.ColumnSpan="4" 
                                    CornerRadius="50" 
                                    Padding="0" 
                                    Margin="10"
@@ -86,7 +89,7 @@
                             </Frame>
 
                             <Frame Grid.Row="2" 
-                                   Grid.ColumnSpan="3" 
+                                   Grid.ColumnSpan="4" 
                                    CornerRadius="50" 
                                    Padding="0" 
                                    Margin="10"
@@ -101,7 +104,7 @@
                                     Text="Login"
                                     BackgroundColor="Black"
                                     TextColor="White"
-                                    Grid.ColumnSpan="3" 
+                                    Grid.ColumnSpan="2" 
                                     CornerRadius="50" 
                                     Padding="0" 
                                     Margin="10"
@@ -109,6 +112,29 @@
                                     Command="{Binding Path=BindingContext.ButtonLogin, Source={x:Reference PaginaLogin}}"
                                     CommandParameter="{Binding .}"
                                     />
+
+                            <Button Grid.Row="3"
+                                    Grid.Column="2"
+                                    Text="Cadastrar"
+                                    TextColor="White"
+                                    CornerRadius="50"
+                                    Padding="0"
+                                    Margin="10"
+                                    Grid.ColumnSpan="2"
+                                    BackgroundColor="Black"
+                                    Command="{Binding ButtonCadastro}"
+                                />
+
+                            <Label Text="Esqueçeu a senha?"
+                                   TextColor="Blue"
+                                   Grid.Row="3"
+                                   Grid.Column="2"
+                                   Grid.ColumnSpan="2"
+                                   VerticalTextAlignment="Center"
+                                   HorizontalTextAlignment="Center"
+                                   TranslationY="40"
+                                   TextDecorations="Underline"
+                                />
                         </Grid>
                     </StackLayout>
                 </Frame>

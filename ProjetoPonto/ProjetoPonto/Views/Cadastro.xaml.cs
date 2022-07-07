@@ -1,5 +1,4 @@
-﻿using ProjetoPonto.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,14 +10,11 @@ using Xamarin.Forms.Xaml;
 namespace ProjetoPonto.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Login : ContentPage
+    public partial class Cadastro : ContentPage
     {
-        LoginViewModel _loginViewModel;
-        public Login()
+        public Cadastro()
         {
             InitializeComponent();
-            _loginViewModel = BindingContext as LoginViewModel;
-            _loginViewModel.Navigation = Navigation;
         }
     }
 }
