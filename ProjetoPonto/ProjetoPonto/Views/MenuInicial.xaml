@@ -5,6 +5,7 @@
              xmlns:viewModel="clr-namespace:ProjetoPonto.ViewModels"
              NavigationPage.HasNavigationBar="false"
              NavigationPage.HasBackButton="False"
+             xmlns:customEntry="clr-namespace:ProjetoPonto.Components.Renderers"
              >
 
     <ContentPage.BindingContext>
@@ -15,7 +16,7 @@
         <StackLayout BackgroundColor="Transparent"
                      Padding="0">
             <Grid ColumnDefinitions="*,*,*" 
-                  RowDefinitions="20*,80*" 
+                  RowDefinitions="20*,10*,80*" 
                   >
 
                 <Image Grid.RowSpan="3" 
@@ -28,7 +29,7 @@
 
                 <Frame Grid.ColumnSpan="3"
                        CornerRadius="50"
-                       Margin="10"
+                       Margin="10,10,10,0"
                        HasShadow="False"
                        BackgroundColor="#FFFFFF"
                        >
@@ -45,6 +46,30 @@
                                Text="Octavio Rossi"
                                TextColor="Black"
                                FontSize="24"/>
+                    </Grid>
+                </Frame>
+
+                <Frame Grid.ColumnSpan="3" 
+                       Grid.Row="1"
+                       Margin="10,10,10,20"
+                       CornerRadius="50"
+                       Padding="0"
+                       >
+                    <Grid ColumnDefinitions="80*,20*">
+                        <customEntry:MyEntry Placeholder="Pesquisar"
+                                             Margin="10,0,0,0"/>
+                        <ImageButton Grid.Column="1"
+                                     Padding="0"
+                                     CornerRadius="50"
+                                     BackgroundColor="White"
+                                     Margin="5"
+                                     >
+                            <ImageButton.Source>
+                                <FontImageSource FontFamily="AwesomeSolid"
+                                                 Color="Black"
+                                                 Glyph="&#xf002;"/>
+                            </ImageButton.Source>
+                        </ImageButton>
                     </Grid>
                 </Frame>
 
@@ -76,7 +101,9 @@
                                    BorderColor="#30000000"
                                    BackgroundColor="#FFFFFF"
                                    >
-
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding Detalhe}" />
+                                    </Frame.GestureRecognizers>
                                     <StackLayout>
                                         <Grid ColumnDefinitions="*,*,*" RowDefinitions="20*,1*,20*">
 
@@ -126,6 +153,24 @@
                                 </Frame>
                             </Grid>
                         </ScrollView>
+                        <Frame BackgroundColor="White"
+                                 CornerRadius="50"
+                                 TranslationY="250"
+                                 HeightRequest="50"
+                                 Margin="150,10,150,10"
+                                 Padding="0"
+                                 >
+                            
+                            <Label Text="+"
+                                   Margin="0"
+                                   Padding="0"
+                                   HorizontalTextAlignment="Center"
+                                   VerticalTextAlignment="Center"
+                                   TextColor="Black"
+                                   FontSize="42"
+                                   />
+                            
+                        </Frame>
                     </StackLayout>
                 </Frame>
             </Grid>
