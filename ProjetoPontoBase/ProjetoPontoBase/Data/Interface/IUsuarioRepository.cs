@@ -8,7 +8,7 @@ namespace ProjetoPontoBase.Data.Interface
 {
     public interface IUsuarioRepository : ICoreRepository<Usuario>
     {
-        string GetUser(string Id);
-        string InsertUser(string Nome, string Senha);
+        bool GetUser(string Nome, string Senha);
+        void InsertUser(string Nome, string Senha, string Email);
     }
 }

@@ -8,24 +8,24 @@ using Xamarin.Forms;
 
 namespace ProjetoPontoBase.Context
 {
-    public class AppContext
+    public class PontoContext
     {
         private static SQLiteConnection _sqliteConnection;
 
-        public static AppContext _lazy;
+        public static PontoContext _lazy;
 
-        public static AppContext Current
+        public static PontoContext Current
         {
             get
             {
                 if (_lazy == null)
-                    _lazy = new AppContext();
+                    _lazy = new PontoContext();
 
                 return _lazy;
             }
         }
 
-        private AppContext()
+        private PontoContext()
         {
             _sqliteConnection = new SQLiteConnection(DependencyService.Get<IDBPath>().GetDbPath());
             _sqliteConnection.CreateTable<Usuario>();

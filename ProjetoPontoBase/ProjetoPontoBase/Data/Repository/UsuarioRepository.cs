@@ -12,30 +12,39 @@ namespace ProjetoPontoBase.Data.Repository
     {
         public UsuarioRepository()
         {
-            DbContext = Context.AppContext.Current;
+            DbContext = PontoContext.Current;
         }
 
-        public string GetUser(string Id)
+        public bool GetUser(string Nome, string Senha)
         {
             try
             {
                 var getUser = _dbContext.Conexao.FindWithQuery<Usuario>(
-                    "SELECT NM_USER FROM USUARIO WHERE ID_USER = ?", Id);
-                return getUser.Nome;
+                    "SELECT NM_USER AND PS_USER FROM USUARIO WHERE NM_USER = ? AND PS_USER = ?", Nome, Senha);
+
+                if (getUser != null)
+                    return true;
+
+                else
+                    return false;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                throw ex;
             }
         }
 
-        public string InsertUser(string Nome, string Senha)
+        public void InsertUser(string nome, string senha, string email)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Usuario user = new Usuario { Nome = nome, Senha = senha, Email = email };
+                var insertUser = _dbContext.Conexao.Insert(user);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
-    }
-
-    public interface IUsuarioRepository<T>
-    {
     }
 }

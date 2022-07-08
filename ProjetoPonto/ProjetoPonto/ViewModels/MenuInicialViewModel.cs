@@ -1,8 +1,6 @@
 ﻿using ProjetoPonto.Views;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -18,8 +16,10 @@ namespace ProjetoPonto.ViewModels
         public INavigation Navigation { get; set; }
        
         private Command _detalhe;
+        private Command _adicionar;
 
         public Command Detalhe => _detalhe ?? (_detalhe = new Command(async () => await EntrarDetalhe()));
+        public Command Adicionar => _adicionar ?? (_adicionar = new Command(async () => await AdicionarPonto()));
 
         private async Task EntrarDetalhe()
         {
@@ -30,7 +30,41 @@ namespace ProjetoPonto.ViewModels
             }
             catch (Exception ex)
             {
-                await App.Current.MainPage.DisplayAlert("Atencao", ex.Message, "OK");
+                await App.Current.MainPage.DisplayAlert("Atenção", ex.Message, "OK");
+            }
+        }
+
+        private async void AdicionarPonto()
+        {
+            try
+            {
+                string titulo;
+                string descricao;
+                DateTimeOffset horario;
+                                
+                var action = await App.Current.MainPage.DisplayActionSheet("Insira um novo ponto:", "Cancelar", "OK", "Titluo:", "Descrição:", "Horário:" );
+                switch(action)
+                {
+                    case "Cancelar":
+                        break;
+
+                    case "OK":
+                        break;
+
+                    case "Titluo:":
+                        
+                        break;
+
+                    case "Descrição:":
+                        break;
+
+                    case "Horário:":
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                await App.Current.MainPage.DisplayAlert("Atenção", ex.Message, "OK");
             }
         }
     }

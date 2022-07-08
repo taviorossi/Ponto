@@ -24,6 +24,8 @@ namespace ProjetoPontoBase.Models
         /// </summary>
         [SQLite.Column("PS_USER")]
         public string Senha { get; set; }
+        [SQLite.Column("EMAIL_USER")]
+        public string Email { get; set; }
 
         #region -> Ignore
         [Ignore]

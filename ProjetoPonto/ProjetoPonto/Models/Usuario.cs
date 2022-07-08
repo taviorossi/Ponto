@@ -11,7 +11,8 @@ namespace ProjetoPonto.Models
         public int Id { get; set; }
         public string Nome { get; set; }
         public string Senha { get; set; }
+        public string Email { get; set; }
 
-        public Usuario (){ Id = 1; Nome = "Octavio"; Senha = "123456"; }
+        public Usuario (){ Id = 1; Nome = "Octavio"; Senha = "123456"; Email = "otaviojrossi@hotmail.com"; }
     }
 }

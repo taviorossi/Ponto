@@ -9,9 +9,9 @@ namespace ProjetoPontoBase.Data.Common
 {
     public class CoreRepository<T> : ICoreRepository<T> where T : CoreEntity, new()
     {
-        protected Context.AppContext _dbContext;
+        protected PontoContext _dbContext;
 
-        public Context.AppContext DbContext
+        public PontoContext DbContext
         {
             get { return _dbContext; }
             set { _dbContext = value; }

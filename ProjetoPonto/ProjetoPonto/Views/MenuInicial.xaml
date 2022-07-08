@@ -160,7 +160,7 @@
                                  Margin="150,10,150,10"
                                  Padding="0"
                                  >
-                            
+
                             <Label Text="+"
                                    Margin="0"
                                    Padding="0"
@@ -168,7 +168,11 @@
                                    VerticalTextAlignment="Center"
                                    TextColor="Black"
                                    FontSize="42"
-                                   />
+                                   >
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Adicionar}" />
+                                </Label.GestureRecognizers>
+                            </Label>
                             
                         </Frame>
                     </StackLayout>

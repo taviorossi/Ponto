@@ -1,5 +1,6 @@
 ﻿using ProjetoPonto.Models;
 using ProjetoPonto.Views;
+using ProjetoPontoBase.Data.Repository;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,8 +19,10 @@ namespace ProjetoPonto.ViewModels
 
         public INavigation Navigation { get; set; }
 
+        #region -> Propriedades
         private string _nome;
         private string _senha;
+        #endregion
 
         #region -> Encapsulamentos
         public string Nome
@@ -49,8 +52,11 @@ namespace ProjetoPonto.ViewModels
 
             try
             {
-                if( _nome == usuario.Nome && _senha == usuario.Senha)
+                UsuarioRepository usuarioRepository = new UsuarioRepository();
+                if(usuarioRepository.GetUser(_nome, _senha) == true)
                     Application.Current.MainPage = new NavigationPage(new MenuInicial());
+                else
+                    await App.Current.MainPage.DisplayAlert("Ops", "Login incorreto", "OK");
             }
             catch(Exception ex)
             {
