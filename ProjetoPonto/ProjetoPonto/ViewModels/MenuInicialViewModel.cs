@@ -1,7 +1,9 @@
 ﻿using ProjetoPonto.Views;
+using ProjetoPonto.Views.Popup;
 using System;
 using System.ComponentModel;
 using System.Threading.Tasks;
+using Xamarin.CommunityToolkit.Extensions;
 using Xamarin.Forms;
 
 namespace ProjetoPonto.ViewModels
@@ -19,7 +21,7 @@ namespace ProjetoPonto.ViewModels
         private Command _adicionar;
 
         public Command Detalhe => _detalhe ?? (_detalhe = new Command(async () => await EntrarDetalhe()));
-        public Command Adicionar => _adicionar ?? (_adicionar = new Command(async () => await AdicionarPonto()));
+        public Command Adicionar => _adicionar ?? (_adicionar = new Command(() => AdicionarPonto()));
 
         private async Task EntrarDetalhe()
         {
@@ -38,29 +40,31 @@ namespace ProjetoPonto.ViewModels
         {
             try
             {
-                string titulo;
-                string descricao;
-                DateTimeOffset horario;
-                                
-                var action = await App.Current.MainPage.DisplayActionSheet("Insira um novo ponto:", "Cancelar", "OK", "Titluo:", "Descrição:", "Horário:" );
-                switch(action)
-                {
-                    case "Cancelar":
-                        break;
+                App.Current.MainPage.Navigation.ShowPopup(PopupInsercao);
 
-                    case "OK":
-                        break;
+                //string titulo;
+                //string descricao;
+                //DateTimeOffset horario;
 
-                    case "Titluo:":
-                        
-                        break;
+                //var action = await App.Current.MainPage.DisplayActionSheet("Insira um novo ponto:", "Cancelar", "OK", "Titluo:", "Descrição:", "Horário:" );
+                //switch(action)
+                //{
+                //    case "Cancelar":
+                //        break;
 
-                    case "Descrição:":
-                        break;
+                //    case "OK":
+                //        break;
 
-                    case "Horário:":
-                        break;
-                }
+                //    case "Titluo:":
+
+                //        break;
+
+                //    case "Descrição:":
+                //        break;
+
+                //    case "Horário:":
+                //        break;
+                //}
             }
             catch (Exception ex)
             {

@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<xct:Popup xmlns="http://xamarin.com/schemas/2014/forms"
+           xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+           x:Class="ProjetoPonto.Views.Popup.PopupInsercao"
+           xmlns:xct="clr-namespace:Xamarin.CommunityToolkit.UI.Views;assembly=Xamarin.CommunityToolkit"
+           >
+    <xct:Popup.Content>
+        <AbsoluteLayout>
+            <StackLayout 
+                AbsoluteLayout.LayoutBounds="0, 0, 1, 1" 
+                AbsoluteLayout.LayoutFlags="All">
+
+                <Button Text="Show Overlay" 
+                    VerticalOptions="CenterAndExpand" 
+                    HorizontalOptions="Center" 
+                    Clicked="OnButtonClicked" />
+            </StackLayout>
+
+            <ContentView x:Name="overlay" 
+                AbsoluteLayout.LayoutBounds="0, 0, 1, 1" 
+                AbsoluteLayout.LayoutFlags="All" 
+                BackgroundColor="#C0808080" 
+                Padding="10, 0">
+
+                <StackLayout Padding="10" BackgroundColor="White" HorizontalOptions="Center" VerticalOptions="Center">
+                    <Label Text="Other Reason" />
+                    <Entry />
+
+                    <StackLayout Orientation="Horizontal">
+                        <Button Text="Cancel" />
+                        <Button Text="Done" />
+                    </StackLayout>
+                </StackLayout>
+            </ContentView>
+        </AbsoluteLayout>
+    </xct:Popup.Content>
+</xct:Popup>
