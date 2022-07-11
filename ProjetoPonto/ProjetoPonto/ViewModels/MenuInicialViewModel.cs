@@ -16,7 +16,7 @@ namespace ProjetoPonto.ViewModels
         }
 
         public INavigation Navigation { get; set; }
-       
+
         private Command _detalhe;
         private Command _adicionar;
 
@@ -40,31 +40,8 @@ namespace ProjetoPonto.ViewModels
         {
             try
             {
-                App.Current.MainPage.Navigation.ShowPopup(PopupInsercao);
-
-                //string titulo;
-                //string descricao;
-                //DateTimeOffset horario;
-
-                //var action = await App.Current.MainPage.DisplayActionSheet("Insira um novo ponto:", "Cancelar", "OK", "Titluo:", "Descrição:", "Horário:" );
-                //switch(action)
-                //{
-                //    case "Cancelar":
-                //        break;
-
-                //    case "OK":
-                //        break;
-
-                //    case "Titluo:":
-
-                //        break;
-
-                //    case "Descrição:":
-                //        break;
-
-                //    case "Horário:":
-                //        break;
-                //}
+                var popup = new PopupInsercao();
+                App.Current.MainPage.Navigation.ShowPopup(popup);
             }
             catch (Exception ex)
             {

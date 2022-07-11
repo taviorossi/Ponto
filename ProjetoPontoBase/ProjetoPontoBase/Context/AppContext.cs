@@ -29,6 +29,7 @@ namespace ProjetoPontoBase.Context
         {
             _sqliteConnection = new SQLiteConnection(DependencyService.Get<IDBPath>().GetDbPath());
             _sqliteConnection.CreateTable<Usuario>();
+            _sqliteConnection.CreateTable<Ponto>();
         }
 
         public SQLiteConnection Conexao

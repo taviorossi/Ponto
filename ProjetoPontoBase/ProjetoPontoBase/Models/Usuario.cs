@@ -1,8 +1,6 @@
 ﻿using ProjetoPontoBase.Models.Base;
 using SQLite;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ProjetoPontoBase.Models
 {
