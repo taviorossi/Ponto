@@ -1,4 +1,5 @@
-﻿using ProjetoPontoBase.Data.Common;
+﻿using ProjetoPontoBase.Context;
+using ProjetoPontoBase.Data.Common;
 using ProjetoPontoBase.Data.Interface;
 using ProjetoPontoBase.Models;
 using System;
@@ -10,27 +11,37 @@ namespace ProjetoPontoBase.Data.Repository
 {
     public class PontoRepository : CoreRepository<Ponto>, IPontoRepository
     {
-        public void EndPonto(DateTime pontoFim, DateTime calcPonto)
+        public PontoRepository()
         {
-            Ponto ponto = new Ponto { PontoFinal = pontoFim, PontoCalculo = calcPonto };
-            var IniciaPonto = _dbContext.Conexao.Insert(ponto);
+            DbContext = PontoContext.Current;
         }
-
         public string GetPonto(Guid Id)
         {
             throw new NotImplementedException();
         }
 
-        public void StartPonto(DateTime pontoInicial, string titulo, string descricao, string local)
+        public void StartPonto(string pontoInicial, string titulo, string descricao)
         {
             try
             {
-                Ponto ponto = new Ponto { PontoInicial = pontoInicial, Titulo = titulo, Descricao = descricao, Posicao = local };
-                var IniciaPonto = _dbContext.Conexao.Insert(ponto);
+                    Ponto ponto = new Ponto { PontoInicial = pontoInicial, Titulo = titulo, Descricao = descricao };
+                    var startPonto = _dbContext.Conexao.Insert(ponto);
             }
             catch (Exception ex)
             {
                 throw ex;
+            }
+        }
+
+        public List<Ponto> GetAllPontos()
+        {
+            try
+            {
+                return _dbContext.Conexao.Table<Ponto>().ToList();
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
             }
         }
     }

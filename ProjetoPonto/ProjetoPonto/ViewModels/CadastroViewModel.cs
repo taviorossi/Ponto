@@ -9,7 +9,7 @@ using ProjetoPontoBase.Data.Repository;
 
 namespace ProjetoPonto.ViewModels
 {
-    public class CadastroViewModel : INotifyPropertyChanged
+    public class CadastroViewModel : BaseViewModel
     {
         private void OnPropertyChanged(string sender)
         {
@@ -63,7 +63,6 @@ namespace ProjetoPonto.ViewModels
 
                 if (_nome != null && _senha != null && _email != null && _email.Contains("@"))
                 { 
-                    //Efetua o login pegando o cadastro dentro do banco.
                     UsuarioRepository usuarioRepository = new UsuarioRepository();
                     usuarioRepository.InsertUser(_nome, _senha, _email);
                     App.Current.MainPage.DisplayAlert("Tudo certo!", "Usuário criado com sucesso", "OK");

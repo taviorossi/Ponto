@@ -14,11 +14,25 @@ namespace ProjetoPonto.Views
     public partial class MenuInicial : ContentPage
     {
         MenuInicialViewModel _menuInicialViewModel;
-        public MenuInicial()
+        public MenuInicial(string nome)
         {
             InitializeComponent();
+            TxtNomeUsuario.Text = nome;
             _menuInicialViewModel = BindingContext as MenuInicialViewModel;
             _menuInicialViewModel.Navigation = Navigation;
+        }
+
+        protected override void OnAppearing()
+        {
+            try
+            {
+                base.OnAppearing();
+                _menuInicialViewModel.BuscaDados();
+            }
+            catch (Exception ex)
+            {
+                App.Current.MainPage.DisplayAlert("Atenção", ex.Message, "OK");
+            }
         }
     }
 }

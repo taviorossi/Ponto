@@ -11,7 +11,7 @@ namespace ProjetoPontoBase.Models
         /// ID do Usuário
         /// </summary>
         [SQLite.Column("ID_USER")]
-        public Guid? UsuarioId { get; set; }
+        public Guid? UsuarioId { get; set; } = Guid.NewGuid();
         /// <summary>
         /// Nome do usuário
         /// </summary>

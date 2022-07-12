@@ -46,5 +46,17 @@ namespace ProjetoPontoBase.Data.Repository
                 throw ex;
             }
         }
+
+        public List<Usuario> GetAllUsers()
+        {
+            try
+            {
+                return _dbContext.Conexao.Table<Usuario>().ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

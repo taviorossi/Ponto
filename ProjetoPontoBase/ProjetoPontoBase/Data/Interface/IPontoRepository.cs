@@ -9,8 +9,7 @@ namespace ProjetoPontoBase.Data.Interface
 {
     public interface IPontoRepository : ICoreRepository<Ponto>
     {
-        void StartPonto(DateTime pontoInicial, string titulo, string descricao, string local);
-        void EndPonto(DateTime pontoFim, DateTime calcPonto);
+        void StartPonto(string pontoInicial, string titulo, string descricao);
         string GetPonto(Guid Id);
     }
 }

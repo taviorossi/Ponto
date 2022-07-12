@@ -11,7 +11,7 @@ using Xamarin.Forms;
 
 namespace ProjetoPonto.ViewModels
 {
-    public class PopupInsercaoViewModel : INotifyPropertyChanged
+    public class PopupInsercaoViewModel : BaseViewModel
     {
         #region -> Propiedades
         private string _txtTitulo;
@@ -33,15 +33,7 @@ namespace ProjetoPonto.ViewModels
         {
             set 
             {
-                if (_hora != value)
-                {
-                    _hora = value;
-
-                    if (PropertyChanged != null)
-                    {
-                        PropertyChanged(this, new PropertyChangedEventArgs("Hora"));
-                    }
-                }
+                _hora = value;OnPropertyChanged("Hora");
             }
             get { return _hora; }
         }
@@ -59,6 +51,11 @@ namespace ProjetoPonto.ViewModels
         }
         #endregion
 
+        public PopupInsercaoViewModel()
+        {
+            Hora = DateTime.Now;
+        }
+
         #region -> Commands
         public Command ButtonOk => _buttonOk ?? (_buttonOk = new Command( async () => await CriarPonto()));
         #endregion
@@ -68,14 +65,15 @@ namespace ProjetoPonto.ViewModels
         {
             try
             {
-                _hora = new DateTime();
-                _hora = DateTime.Now;
+                
                 PontoRepository pontoRepository = new PontoRepository();
-                await pontoRepository.StartPonto(_hora.Date, _txtTitulo, _txtDescricao, _local);
+                pontoRepository.StartPonto(_hora.ToString("T"), _txtTitulo, _txtDescricao);
+
+                await App.Current.MainPage.DisplayAlert("Tudo Certo!", "Ponto criado com sucesso!", "OK");
             }
             catch (Exception ex)
             {
-                App.Current.MainPage.DisplayAlert("Atenção", ex.Message, "OK");
+                await App.Current.MainPage.DisplayAlert("Atenção", ex.Message, "OK");
             }
         }
         #endregion

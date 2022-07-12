@@ -10,7 +10,7 @@ using Xamarin.Forms;
 
 namespace ProjetoPonto.ViewModels
 {
-    public class LoginViewModel : INotifyPropertyChanged
+    public class LoginViewModel : BaseViewModel
     {
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged(string sender)
@@ -53,8 +53,8 @@ namespace ProjetoPonto.ViewModels
             try
             {
                 UsuarioRepository usuarioRepository = new UsuarioRepository();
-                if(usuarioRepository.GetUser(_nome, _senha) == true)
-                    Application.Current.MainPage = new NavigationPage(new MenuInicial());
+                if (usuarioRepository.GetUser(_nome, _senha) == true)
+                    Application.Current.MainPage = new NavigationPage(new MenuInicial(_nome));
                 else
                     await App.Current.MainPage.DisplayAlert("Ops", "Login incorreto", "OK");
             }

@@ -43,7 +43,8 @@
 
                         <Label VerticalOptions="Center"
                                Grid.Column="1" 
-                               Text="Octavio Rossi"
+                               x:Name="TxtNomeUsuario"
+                               Text=""
                                TextColor="Black"
                                FontSize="24"/>
                     </Grid>
@@ -92,70 +93,79 @@
                                  Margin="0,10,0,50"
                                  >
                         <ScrollView>
-                            <Grid RowDefinitions="*,*" ColumnDefinitions="*,*,*">
+                            <Grid RowDefinitions="70*,30*" ColumnDefinitions="*,*,*">
+                                <ListView 
+                                    ItemsSource="{Binding Pontos}"
+                                    RowHeight="100"
+                                    SelectionMode="None"
+                                    Grid.ColumnSpan="3"
+                                    
+                                    >
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <ViewCell>
+                                                <Frame CornerRadius="25" 
+                                                   Padding="8" 
+                                                   Margin="10,10,10,0"
+                                                   BorderColor="#30000000"
+                                                   >
+                                                    <Frame.GestureRecognizers>
+                                                        <TapGestureRecognizer Command="{Binding Detalhe}" />
+                                                    </Frame.GestureRecognizers>
+                                                    <StackLayout>
+                                                        <Grid ColumnDefinitions="*,*,*" RowDefinitions="20*,1*,20*">
 
-                                <Frame Grid.ColumnSpan="3" 
-                                   CornerRadius="25" 
-                                   Padding="8" 
-                                   Margin="10,10,10,0"
-                                   BorderColor="#30000000"
-                                   BackgroundColor="#FFFFFF"
-                                   >
-                                    <Frame.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding Detalhe}" />
-                                    </Frame.GestureRecognizers>
-                                    <StackLayout>
-                                        <Grid ColumnDefinitions="*,*,*" RowDefinitions="20*,1*,20*">
+                                                            <Label Text="{Binding Titulo}"
+                                                               Grid.ColumnSpan="3"
+                                                               TextColor="Black"
+                                                               FontSize="24"
+                                                               VerticalTextAlignment="Center"
+                                                               HorizontalTextAlignment="Start"
+                                                            />
 
-                                            <Label Text="Praça da paz"
-                                                   Grid.ColumnSpan="3"
-                                                   TextColor="Black"
-                                                   FontSize="24"
-                                                   VerticalTextAlignment="Center"
-                                                   HorizontalTextAlignment="Start"
-                                               />
+                                                            <BoxView Grid.Row="1"
+                                                                 Grid.RowSpan="1"
+                                                                 Grid.ColumnSpan="3"
+                                                                 HeightRequest="1"
+                                                                 BackgroundColor="Black"
+                                                            />
 
-                                            <BoxView Grid.Row="1"
-                                                     Grid.RowSpan="1"
-                                                     Grid.ColumnSpan="3"
-                                                     HeightRequest="1"
-                                                     BackgroundColor="Black"
-                                             />
+                                                            <Label Grid.Row="2"
+                                                               Grid.ColumnSpan="2"
+                                                               Text="{Binding Descricao}"
+                                                               TextColor="Black"
+                                                               FontSize="18"
+                                                               HorizontalTextAlignment="Start"
+                                                            />
 
-                                            <Label Grid.Row="2"
-                                                   Grid.ColumnSpan="2"
-                                                   Text="Fiquei tomando sol até virar um carvão"
-                                                   TextColor="Black"
-                                                   FontSize="18"
-                                                   HorizontalTextAlignment="Start"
-                                           />
+                                                            <Label Grid.Column="1"
+                                                               Grid.ColumnSpan="2"
+                                                               Grid.Row="2"
+                                                               VerticalOptions="Center"
+                                                               HorizontalTextAlignment="End"
+                                                            >
 
-                                            <Label Grid.Column="1"
-                                                   Grid.ColumnSpan="2"
-                                                   Grid.Row="2"
-                                                   VerticalOptions="Center"
-                                                   HorizontalTextAlignment="End"
-                                               >
-
-                                                <Label.FormattedText>
-                                                    <FormattedString>
-                                                        <Span Text="13:00:00"/>
-                                                        <Span Text=" - " />
-                                                        <Span Text="15:36:00" />
-                                                    </FormattedString>
-                                                </Label.FormattedText>
-
-                                            </Label>
-
-                                        </Grid>
-                                    </StackLayout>
-
-                                </Frame>
+                                                                <Label.FormattedText>
+                                                                    <FormattedString>
+                                                                        <Span Text="{Binding PontoInicial}"/>
+                                                                        <Span Text=" - " />
+                                                                        <Span Text="Teste" />
+                                                                    </FormattedString>
+                                                                </Label.FormattedText>
+                                                            </Label>
+                                                        </Grid>
+                                                    </StackLayout>
+                                                </Frame>
+                                            </ViewCell>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
                             </Grid>
                         </ScrollView>
                         <Frame BackgroundColor="White"
+                               Grid.Row="1"
+                               Grid.ColumnSpan="3"
                                  CornerRadius="50"
-                                 TranslationY="250"
                                  HeightRequest="50"
                                  Margin="150,10,150,10"
                                  Padding="0"
@@ -173,7 +183,7 @@
                                     <TapGestureRecognizer Command="{Binding Adicionar}" />
                                 </Label.GestureRecognizers>
                             </Label>
-                            
+
                         </Frame>
                     </StackLayout>
                 </Frame>
