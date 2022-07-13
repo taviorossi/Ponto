@@ -1,11 +1,13 @@
 ﻿using ProjetoPontoBase.Models.Base;
 using SQLite;
 using System;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace ProjetoPontoBase.Models
 {
     [SQLite.Table("PONTO")]
-    public class Ponto : CoreEntity
+    public class Ponto : CoreEntity, INotifyPropertyChanged
     {
         /// <summary>
         /// Id do Ponto
@@ -20,8 +22,8 @@ namespace ProjetoPontoBase.Models
         /// <summary>
         /// Horário do ponto final
         /// </summary>
-        //[SQLite.Column("LAST_POINT")]
-        //public DateTime PontoFinal { get; set; }
+        [SQLite.Column("LAST_POINT")]
+        public string PontoFinal { get; set; }
         ///// <summary>
         ///// Calculo do tempo total
         ///// </summary>
@@ -53,5 +55,9 @@ namespace ProjetoPontoBase.Models
         [Ignore]
         public virtual Ponto ponto { get; set; }
         #endregion
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged([CallerMemberName] string propertyName = "") =>
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }

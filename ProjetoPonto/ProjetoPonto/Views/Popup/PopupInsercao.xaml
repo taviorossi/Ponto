@@ -36,7 +36,11 @@
                                    CornerRadius="50">
 
                                 <myEntry:MyEntry Placeholder="Titulo"
-                                                 Text="{Binding TxtTitulo}"/>
+                                                 Text="{Binding TxtTitulo}"
+                                                 x:Name="txtTitulo"
+                                                 TextColor="Black"
+                                                 IsEnabled="True"
+                                                 />
                             </Frame>
 
                             <Frame Grid.Row="1"
@@ -45,7 +49,11 @@
                                    Padding="0"
                                    CornerRadius="50">
                                 <myEntry:MyEntry Placeholder="Descrição"
-                                             Text="{Binding TxtDescricao}"/>
+                                                 Text="{Binding TxtDescricao}"
+                                                 x:Name="txtDescricao"
+                                                 TextColor="Black"
+                                                 IsEnabled="True"
+                                                 />
                             </Frame>
 
                             <Frame Grid.Row="2"
@@ -56,7 +64,10 @@
 
                                 <Label Text="{Binding Hora, StringFormat='{0:T}'}"
                                        HorizontalTextAlignment="Center"
-                                       VerticalTextAlignment="Center"/>
+                                       VerticalTextAlignment="Center"
+                                       x:Name="txtHoraInicial"
+                                       TextColor="Black"
+                                       IsEnabled="True"/>
                             </Frame>
 
                             <Frame Grid.Row="2"
@@ -66,9 +77,13 @@
                                    Margin="10"
                                    CornerRadius="50">
 
-                                <Label Text="{Binding Local}"
-                                       x:Name="TxtLocal"
+                                <Label Text="{Binding HoraFinal, StringFormat='{0:T}'}"
+                                       x:Name="txtHoraFinal"
                                        TextColor="Black"
+                                       HorizontalTextAlignment="Center"
+                                       VerticalTextAlignment="Center"
+                                       IsEnabled="False"
+                                       IsVisible="False"
                                    />
                             </Frame>
 
@@ -81,7 +96,25 @@
                                     Grid.Column="2"
                                     Grid.ColumnSpan="2"
                                     Margin="10"
-                                    Padding="0"/>
+                                    Padding="0"
+                                    x:Name="ButtonInsercao"
+                                    IsEnabled="True"
+                                    IsVisible="True"
+                                    />
+                            
+                            <Button Text="Encerrar" 
+                                    Command="{Binding ButtonEnd}"
+                                    Grid.Row="3"
+                                    BackgroundColor="Black"
+                                    TextColor="White"
+                                    Grid.Column="2"
+                                    Grid.ColumnSpan="2"
+                                    Margin="10"
+                                    Padding="0"
+                                    x:Name="ButtonEncerrar"
+                                    IsEnabled="False"
+                                    IsVisible="False"
+                                    />
                         </Grid>
                     </StackLayout>
                 </Frame>

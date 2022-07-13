@@ -8,6 +8,7 @@ using Xamarin.CommunityToolkit.Extensions;
 using Xamarin.Essentials;
 using ProjetoPontoBase.Data.Repository;
 using Xamarin.Forms;
+using ProjetoPontoBase.Models;
 
 namespace ProjetoPonto.ViewModels
 {
@@ -17,9 +18,20 @@ namespace ProjetoPonto.ViewModels
         private string _txtTitulo;
         private string _txtDescricao;
         private DateTime _hora;
+        private DateTime _horaFinal;
         private string _local;
         private Command _buttonOk;
+        private Command _buttonEnd;
+        private Ponto _ponto;
         public event PropertyChangedEventHandler PropertyChanged;
+        #endregion
+
+        #region -> Construtor
+        public PopupInsercaoViewModel()
+        {
+            Hora = DateTime.Now;
+            HoraFinal = DateTime.Now;
+        }
         #endregion
 
         #region -> Encapsulamentos
@@ -31,11 +43,14 @@ namespace ProjetoPonto.ViewModels
 
         public DateTime Hora
         {
-            set 
-            {
-                _hora = value;OnPropertyChanged("Hora");
-            }
+            set { _hora = value;OnPropertyChanged("Hora"); }
             get { return _hora; }
+        }
+
+        public DateTime HoraFinal
+        {
+            get { return _horaFinal; }
+            set { _horaFinal = value; }
         }
 
         public string TxtDescricao
@@ -49,15 +64,18 @@ namespace ProjetoPonto.ViewModels
             get { return _txtTitulo; }
             set { _txtTitulo = value; }
         }
-        #endregion
 
-        public PopupInsercaoViewModel()
+        public Ponto PontoFinal
         {
-            Hora = DateTime.Now;
+            get { return _ponto; }
+            set { _ponto = value; }
         }
+
+        #endregion
 
         #region -> Commands
         public Command ButtonOk => _buttonOk ?? (_buttonOk = new Command( async () => await CriarPonto()));
+        public Command ButtonEnd => _buttonEnd ?? (_buttonEnd = new Command( async () => await EncerrarPonto()));
         #endregion
 
         #region -> Métodos
@@ -65,8 +83,8 @@ namespace ProjetoPonto.ViewModels
         {
             try
             {
-                
                 PontoRepository pontoRepository = new PontoRepository();
+                MenuInicialViewModel menuInicialViewModel = new MenuInicialViewModel();
                 pontoRepository.StartPonto(_hora.ToString("T"), _txtTitulo, _txtDescricao);
 
                 await App.Current.MainPage.DisplayAlert("Tudo Certo!", "Ponto criado com sucesso!", "OK");
@@ -74,6 +92,20 @@ namespace ProjetoPonto.ViewModels
             catch (Exception ex)
             {
                 await App.Current.MainPage.DisplayAlert("Atenção", ex.Message, "OK");
+            }
+        }
+
+        private async Task EncerrarPonto()
+        {
+            try
+            {
+                PontoFinal.PontoFinal = HoraFinal.ToString("T");
+                PontoRepository pontoRepository = new PontoRepository();
+                pontoRepository.AtualizaPonto(PontoFinal);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
             }
         }
         #endregion

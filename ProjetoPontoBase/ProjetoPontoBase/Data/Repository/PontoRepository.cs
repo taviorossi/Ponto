@@ -15,10 +15,6 @@ namespace ProjetoPontoBase.Data.Repository
         {
             DbContext = PontoContext.Current;
         }
-        public string GetPonto(Guid Id)
-        {
-            throw new NotImplementedException();
-        }
 
         public void StartPonto(string pontoInicial, string titulo, string descricao)
         {
@@ -29,7 +25,7 @@ namespace ProjetoPontoBase.Data.Repository
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw new Exception(ex.Message);
             }
         }
 
@@ -39,9 +35,21 @@ namespace ProjetoPontoBase.Data.Repository
             {
                 return _dbContext.Conexao.Table<Ponto>().ToList();
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw new Exception(e.Message);
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public void AtualizaPonto(Ponto ponto)
+        {
+            try
+            {
+                var atualizaPonto = _dbContext.Conexao.Query<Ponto>("INSERT INTO PONTO LAST_POINT VALUE ? WHERE ID_POINT = ?; ", ponto.PontoFinal, ponto.PontoId);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
             }
         }
     }
