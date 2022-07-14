@@ -11,9 +11,6 @@ namespace ProjetoPonto.ViewModels
 {
     public class CadastroViewModel : BaseViewModel
     {
-        private void OnPropertyChanged(string sender)
-        {
-        }
         #region -> Propriedades
         private Command _buttonRealizarCadastro;
         private Usuario _usuario;

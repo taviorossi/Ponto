@@ -10,7 +10,7 @@ namespace ProjetoPontoBase.Data.Interface
     public interface IPontoRepository : ICoreRepository<Ponto>
     {
         void StartPonto(string pontoInicial, string titulo, string descricao);
-        void AtualizaPonto(Ponto ponto);
+        void AtualizaPonto(Ponto pontoFinal);
         List<Ponto> GetAllPontos();
     }
 }

@@ -20,19 +20,13 @@ namespace ProjetoPonto.ViewModels
         public INavigation Navigation { get; set; }
         private Command _detalhe;
         private Command _adicionar;
-        private List<Usuario> _usuarios;
+        private Command _voltar;
         private ObservableCollection<Ponto> _pontos;
         private PontoRepository _pontoRepository;
         private bool _isDetalhe;
         #endregion
 
         #region -> Encapsulamentos
-        public List<Usuario> Usuarios
-        {
-            get { return _usuarios; }
-            set { _usuarios = value; }
-        }
-
         public ObservableCollection<Ponto> Pontos
         {
             get { return _pontos; }
@@ -43,6 +37,7 @@ namespace ProjetoPonto.ViewModels
         #region -> Commands
         public Command Detalhe => _detalhe ?? (_detalhe = new Command(() => EntrarDetalhe(new Ponto())));
         public Command Adicionar => _adicionar ?? (_adicionar = new Command(() => AdicionarPonto()));
+        public Command Voltar => _voltar ?? (_voltar = new Command(() => VoltarLogin()));
         #endregion
 
         #region -> Métodos
@@ -88,6 +83,11 @@ namespace ProjetoPonto.ViewModels
             {
                 App.Current.MainPage.DisplayAlert("Atenção", ex.Message, "OK");
             }
+        }
+
+        public void VoltarLogin()
+        {
+            Application.Current.MainPage = new NavigationPage(new Login());
         }
         #endregion
     }

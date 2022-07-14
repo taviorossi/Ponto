@@ -1,6 +1,6 @@
-﻿using ProjetoPonto.Models;
-using ProjetoPonto.Views;
+﻿using ProjetoPonto.Views;
 using ProjetoPontoBase.Data.Repository;
+using ProjetoPontoBase.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,16 +12,12 @@ namespace ProjetoPonto.ViewModels
 {
     public class LoginViewModel : BaseViewModel
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged(string sender)
-        {
-        }
-
-        public INavigation Navigation { get; set; }
-
         #region -> Propriedades
         private string _nome;
         private string _senha;
+        public INavigation Navigation { get; set; }
+        private List<Usuario> _usuarios;
+        private UsuarioRepository _usuarioRepository;
         #endregion
 
         #region -> Encapsulamentos
@@ -36,6 +32,13 @@ namespace ProjetoPonto.ViewModels
             get { return _senha; }
             set { _senha = value; OnPropertyChanged("Senha"); }
         }
+
+        public List<Usuario> Usuarios
+        {
+            get { return _usuarios; }
+            set { _usuarios = value; OnPropertyChanged("Usuarios"); }
+        }
+
         #endregion
 
         #region -> Commands
@@ -52,6 +55,13 @@ namespace ProjetoPonto.ViewModels
 
             try
             {
+                /* 
+                 * var id = usuarioRepository.GetUser(_nome, _senha)
+                 * if(id != null)
+                 * Application.Current.MainPage = new NavigationPage(new MenuInicial(id));
+                 */
+
+
                 UsuarioRepository usuarioRepository = new UsuarioRepository();
                 if (usuarioRepository.GetUser(_nome, _senha) == true)
                     Application.Current.MainPage = new NavigationPage(new MenuInicial(_nome));
@@ -76,6 +86,21 @@ namespace ProjetoPonto.ViewModels
                 await App.Current.MainPage.DisplayAlert("Atencao", ex.Message, "OK");
             }
         }
+
+        //public void BuscaDadosUsuario()
+        //{
+        //    try
+        //    {   
+        //        _usuarioRepository = new UsuarioRepository();
+
+        //        var listUsuario = _usuarioRepository.GetAllUsers();
+        //        Usuarios = new List<Usuario>(listUsuario);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        App.Current.MainPage.DisplayAlert("Atenção", ex.Message, "OK");
+        //    }
+        //}
         #endregion
 
     }

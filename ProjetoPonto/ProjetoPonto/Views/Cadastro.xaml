@@ -2,9 +2,12 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:customEntry="clr-namespace:ProjetoPonto.Components.Renderers"
+             NavigationPage.HasNavigationBar="false"
+             NavigationPage.HasBackButton="False"
              xmlns:viewModel="clr-namespace:ProjetoPonto.ViewModels"
              x:Class="ProjetoPonto.Views.Cadastro"
              x:Name="PageCadastro"
+             
              >
 
     <ContentPage.BindingContext>
@@ -15,7 +18,7 @@
         <StackLayout BackgroundColor="Transparent"
                      Padding="0">
             <Grid ColumnDefinitions="*,*,*" 
-                  RowDefinitions="20*,80*" 
+                  RowDefinitions="30*,70*" 
                   >
 
                 <Image Grid.RowSpan="2" 
@@ -25,7 +28,7 @@
                        HorizontalOptions="FillAndExpand" 
                        VerticalOptions="FillAndExpand" 
                        />
-
+            
                 <BoxView Grid.ColumnSpan="3"
                        Grid.Row="1"
                        BackgroundColor="White"
@@ -53,7 +56,8 @@
                                    Padding="0"
                                    Margin="10">
                                 <customEntry:MyEntry Placeholder="Nome"
-                                                     Text="{Binding Nome}"/>
+                                                     Text="{Binding Nome}"
+                                                     MaxLength="38"/>
                             </Frame>
                             <Frame Grid.Row="2"
                                    CornerRadius="50"

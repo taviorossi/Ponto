@@ -20,5 +20,18 @@ namespace ProjetoPonto.Views
             _loginViewModel = BindingContext as LoginViewModel;
             _loginViewModel.Navigation = Navigation;
         }
+
+        //protected override void OnAppearing()
+        //{
+        //    try
+        //    {
+        //        base.OnAppearing();
+        //        _loginViewModel.BuscaDadosUsuario();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        App.Current.MainPage.DisplayAlert("Atenção", ex.Message, "OK");
+        //    }
+        //}
     }
 }

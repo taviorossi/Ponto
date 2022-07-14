@@ -20,7 +20,7 @@ namespace ProjetoPontoBase.Data.Repository
             try
             {
                 var getUser = _dbContext.Conexao.FindWithQuery<Usuario>(
-                    "SELECT NM_USER AND PS_USER FROM USUARIO WHERE NM_USER = ? AND PS_USER = ?", Nome, Senha);
+                    "SELECT ID_USER FROM USUARIO WHERE NM_USER = ? AND PS_USER = ?", Nome, Senha);
 
                 if (getUser != null)
                     return true;

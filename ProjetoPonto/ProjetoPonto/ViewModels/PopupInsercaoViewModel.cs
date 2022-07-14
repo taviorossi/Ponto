@@ -1,14 +1,11 @@
-﻿using ProjetoPonto.Views.Popup;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.ComponentModel;
-using System.Text;
 using System.Threading.Tasks;
-using Xamarin.CommunityToolkit.Extensions;
-using Xamarin.Essentials;
 using ProjetoPontoBase.Data.Repository;
 using Xamarin.Forms;
 using ProjetoPontoBase.Models;
+using System.Globalization;
+using System.Linq;
 
 namespace ProjetoPonto.ViewModels
 {
@@ -19,11 +16,10 @@ namespace ProjetoPonto.ViewModels
         private string _txtDescricao;
         private DateTime _hora;
         private DateTime _horaFinal;
-        private string _local;
+        private TimeSpan _calculoDaHora;
         private Command _buttonOk;
         private Command _buttonEnd;
         private Ponto _ponto;
-        public event PropertyChangedEventHandler PropertyChanged;
         #endregion
 
         #region -> Construtor
@@ -35,23 +31,24 @@ namespace ProjetoPonto.ViewModels
         #endregion
 
         #region -> Encapsulamentos
-        public string Local
-        {
-            get { return _local; }
-            set { _local = value; }
-        }
-
         public DateTime Hora
         {
-            set { _hora = value;OnPropertyChanged("Hora"); }
             get { return _hora; }
+            set { _hora = value; OnPropertyChanged("Hora"); }
         }
 
         public DateTime HoraFinal
         {
             get { return _horaFinal; }
-            set { _horaFinal = value; }
+            set { _horaFinal = value; OnPropertyChanged("HoraFinal"); }
         }
+
+        public TimeSpan CalculoDaHora
+        {
+            get { return _calculoDaHora; }
+            set { _calculoDaHora = value; OnPropertyChanged("HoraFinal"); }
+        }
+
 
         public string TxtDescricao
         {
@@ -70,7 +67,6 @@ namespace ProjetoPonto.ViewModels
             get { return _ponto; }
             set { _ponto = value; }
         }
-
         #endregion
 
         #region -> Commands
@@ -86,6 +82,7 @@ namespace ProjetoPonto.ViewModels
                 PontoRepository pontoRepository = new PontoRepository();
                 MenuInicialViewModel menuInicialViewModel = new MenuInicialViewModel();
                 pontoRepository.StartPonto(_hora.ToString("T"), _txtTitulo, _txtDescricao);
+                
 
                 await App.Current.MainPage.DisplayAlert("Tudo Certo!", "Ponto criado com sucesso!", "OK");
             }
@@ -99,9 +96,24 @@ namespace ProjetoPonto.ViewModels
         {
             try
             {
+                //Converte a string para datetime
+                DateTimeOffset dtOffset;
+           
+                if (DateTimeOffset.TryParse(PontoFinal.PontoInicial, null, DateTimeStyles.None, out dtOffset))
+                {
+                    Hora = dtOffset.DateTime;
+                    Hora.ToString("T");
+                }
+
+
+                //Calculo da hora total
                 PontoFinal.PontoFinal = HoraFinal.ToString("T");
+                PontoFinal.PontoCalculo = HoraFinal.Subtract(Hora).ToString("T");
+
                 PontoRepository pontoRepository = new PontoRepository();
                 pontoRepository.AtualizaPonto(PontoFinal);
+
+                await App.Current.MainPage.DisplayAlert("Tudo Certo!", "Ponto encerrado com sucesso!", "OK");
             }
             catch (Exception ex)
             {

@@ -38,7 +38,7 @@
                         <FormattedString>
                             <Span Text="Ponto"/>
                             <Span Text="&#10;" />
-                            <Span Text="Bronz" />
+                            <Span Text="Bronze" />
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>

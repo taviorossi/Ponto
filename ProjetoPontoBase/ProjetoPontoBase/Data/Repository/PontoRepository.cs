@@ -45,7 +45,7 @@ namespace ProjetoPontoBase.Data.Repository
         {
             try
             {
-                var atualizaPonto = _dbContext.Conexao.Query<Ponto>("INSERT INTO PONTO LAST_POINT VALUE ? WHERE ID_POINT = ?; ", ponto.PontoFinal, ponto.PontoId);
+                var atualizaPonto = _dbContext.Conexao.InsertOrReplace(ponto);
             }
             catch (Exception ex)
             {

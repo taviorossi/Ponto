@@ -24,11 +24,11 @@ namespace ProjetoPontoBase.Models
         /// </summary>
         [SQLite.Column("LAST_POINT")]
         public string PontoFinal { get; set; }
-        ///// <summary>
-        ///// Calculo do tempo total
-        ///// </summary>
-        //[SQLite.Column("CALC_POINT")]
-        //public DateTime PontoCalculo { get; set; }
+        /// <summary>
+        /// Calculo do tempo total
+        /// </summary>
+        [SQLite.Column("CALC_POINT")]
+        public string PontoCalculo { get; set; }
         /// <summary>
         /// Titulo do ponto
         /// </summary>
